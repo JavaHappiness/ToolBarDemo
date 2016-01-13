@@ -1,0 +1,24 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="gulang.toolbar.MainActivity">
+    <item
+        android:id="@+id/action_edit"
+        android:icon="@mipmap/ab_edit"
+        android:orderInCategory="80"
+        android:title="@string/action_edit"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_share"
+        android:icon="@mipmap/ab_share"
+        android:orderInCategory="90"
+        android:title="@string/action_share"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_next"
+        android:orderInCategory="100"
+        android:icon="@mipmap/actionbar_next"
+        android:title="@string/action_next"
+        app:showAsAction="ifRoom" />
+</menu>

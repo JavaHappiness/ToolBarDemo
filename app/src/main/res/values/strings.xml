@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ToolBarDemo</string>
+    <string name="action_next">下一步</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="action_edit">编辑</string>
+    <string name="action_share">分享</string>
+    <string name="action_back">返回</string>
+</resources>

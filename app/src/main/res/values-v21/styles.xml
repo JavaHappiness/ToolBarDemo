@@ -1,0 +1,9 @@
+<resources>>
+    <!--使用 Toolbar，要将让原本的 ActionBar隐藏起来-->
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+</resources>

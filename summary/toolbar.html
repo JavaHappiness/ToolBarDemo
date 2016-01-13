@@ -1,0 +1,225 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>ToolBar</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Cagliostro' rel='stylesheet' type='text/css'>
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <style type="text/css">
+        #title {
+        padding:20px;
+        background-color:#00BCD4;
+        font-size: 20px;
+        color: #ffffff;
+        }
+        #ul_background{
+        background-color:#2B2B2B;
+        color: #ffffff;
+        }
+        #li_line{
+        margin:10px;
+
+        }
+        #sub_title{
+        font-size: 16px;
+        color:#FF4081;
+        font-weight:900;
+        }
+        #image{
+        margin-top:5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="main_bg" style="background-color:#FFFFFF ;">
+    <div class="wrap">
+        <div class="wrapper">
+            <div class="main">
+                <div class="details">
+
+                    <div class="det-para">
+                        <div class="text clear" style="width:54%;">
+                            <h2 class="style">Android Material Design之Theme和ToolBar</h2>
+                            <div style="margin-left:80%;color:#FF4081;font-size:20px">Author: 孤狼</div>
+                            <img src="images/d3.png" width="100%">
+
+                            <div>中文网站：<a href="https://github.com/1sters/material_design_zh"><u>Material
+                                Design中文</u></a>
+                            </div>
+                            <div>官方网站：<a
+                                    href="http://www.google.com/design/spec/material-design/introduction.html"><u>Material
+                                Design英文</u></a>
+                            </div>
+                            <p>
+                                　　Android 3.0 Android 推了 ActionBar 这个控件，而到了2013 年 Google 开始大力地推动所谓的
+                                android style，想要逐渐改善过去 android 纷乱的界面设计，希望让终端使用者尽可能在 android
+                                手机有个一致的操作体验。ActionBar 过去最多人使用的两大套件就是 ActionBarSherlock 以及官方提供在
+                                support library v7 里的 AppCompat。<br/>
+                                官方在某些程度上认为 ActionBar 限制了 android app 的开发与设计的弹性，而在 material design
+                                也对之做了名称的定义：App bar。
+                            </p>
+                            <br/>
+
+                            <div id="title"><b>一、Material Design的Theme</b></div>
+
+                            <div id="sub_title">md的主题有：</div>
+
+                            <ul id="ul_background">
+                                <li id="li_line">@android:style/Theme.Material (dark version)</li>
+
+                                <li id="li_line">@android:style/Theme.Material.Light (light
+                                    version)
+                                </li>
+
+                                <li id="li_line">@android:style/Theme.Material.Light.DarkActionBar
+                                </li>
+                            </ul>
+
+                            <div id="sub_title">与之对应的Compat Theme:</div>
+
+                            <ul id="ul_background">
+                                <li id="li_line">Theme.AppCompat</li>
+                                <li id="li_line">Theme.AppCompat.Light</li>
+                                <li id="li_line">Theme.AppCompat.Light.DarkActionBar</li>
+                            </ul>
+                            <br/>
+                            <img src="images/d5.png" width="100%">
+                            <table width="100%">
+                                <tr>
+                                    <td width="50%" style="padding-right:10px;padding-top:10px">
+                                        <img src="images/d4.jpg">
+                                    </td>
+                                    <td width="50%" style="padding-left:10px;padding-top:10px">
+                                        <img src="images/d6.jpeg">
+                                    </td>
+                                </tr>
+
+                            </table>
+                            <p id="title">2.布局中使用</p>
+                            <img id="image" src="images/d7.png" width="100%">
+                            使用Toolbar,隐藏原本的ActionBar
+                            <img id="image" src="images/d8.png" width="100%">
+
+                            <p id="title">3.代码中设置</p>
+
+                            <img id="image" src="images/d9.png" width="100%">
+
+                            <p id="title">4.常用设置</p>
+                            <pre id="ul_background">
+        //初始化Toolbar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //标题，注意：要设置在setSupportActionBar()之前
+        toolbar.setTitle("返回");
+        //Toolbar取代原本的 actionbar,
+        setSupportActionBar(toolbar);
+        //设置副标题
+        toolbar.setSubtitle("副标题");
+        //设置副标题颜色
+        toolbar.setSubtitleTextColor(getResources().getInteger(R.color.colorAccent));
+        //设置Logo
+        toolbar.setLogo(R.mipmap.ic_launcher);
+        //设置图标
+        toolbar.setNavigationIcon(R.mipmap.actionbar_back);
+                            </pre>
+                            <p id="title">5.监听事件</p>
+                           <pre id="ul_background" style="margin-top:5px">
+        //点击事件要设置在setSupportActionBar()之后
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), R.string.action_back, Toast.LENGTH_LONG).show();
+            }
+        });
+        //设置点击事件
+        toolbar.setOnMenuItemClickListener(this);
+
+    //加载菜单的布局
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    /**
+     * 设置Toolbar头部item点击事件
+     *
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.action_edit:
+                Toast.makeText(getApplicationContext(), R.string.action_edit, Toast.LENGTH_LONG).show();
+                break;
+            case R.id.action_share:
+                Toast.makeText(getApplicationContext(), R.string.action_share, Toast.LENGTH_LONG).show();
+                break;
+            case R.id.action_next:
+                Toast.makeText(getApplicationContext(), R.string.action_next, Toast.LENGTH_LONG).show();
+                break;
+        }
+        return true;
+    }
+                           </pre>
+
+                            <p id="title" style="margin-top:5px">6.菜单布局</p>
+
+                           <pre id="ul_background" style="margin-top:5px">
+                               &lt; menu xmlns:android="http://schemas.android.com/apk/res/android"
+                                     xmlns:app="http://schemas.android.com/apk/res-auto"
+                                     xmlns:tools="http://schemas.android.com/tools"
+                                     tools:context="gulang.toolbar.MainActivity" &gt;
+                                   &lt;item
+                                           android:id="@+id/action_edit"
+                                           android:icon="@mipmap/ab_edit"
+                                           android:orderInCategory="80"
+                                           android:title="@string/action_edit"
+                                           app:showAsAction="ifRoom" /&gt;
+
+                                   &lt;item
+                                           android:id="@+id/action_share"
+                                           android:icon="@mipmap/ab_share"
+                                           android:orderInCategory="90"
+                                           android:title="@string/action_share"
+                                           app:showAsAction="ifRoom" /&gt;
+                                   &lt;item
+                                           android:id="@+id/action_next"
+                                           android:orderInCategory="100"
+                                           android:icon="@mipmap/actionbar_next"
+                                           android:title="@string/action_next"
+                                           app:showAsAction="ifRoom" /&gt;
+                               &lt;/menu&gt;
+                           </pre>
+                            <p id="title" style="margin-top:5px">7.运行效果</p>
+                            <table width="100%">
+                                <tr>
+                                    <td width="50%" style="padding-right:10px;padding-top:10px">
+                                        <img src="images/d10.jpeg">
+                                    </td>
+                                    <td width="50%" style="padding-left:10px;padding-top:10px">
+                                        <img src="images/d11.jpeg">
+                                    </td>
+                                </tr>
+
+                            </table>
+                            <div>实例代码：<a href="https://github.com/1sters/material_design_zh"><u>Toolbar Demo</u></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>
